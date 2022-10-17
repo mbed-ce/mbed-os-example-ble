@@ -1,24 +1,12 @@
-![](./resources/official_armmbed_example_badge.png)
 # BLE Examples
 
 This repo contains a collection of BLE example applications based on Mbed OS. Each example subdirectory contains a separate Mbed OS project, along with a description of the example and additional instructions for running it.
 
-You can build each project with all supported [Mbed OS build tools](https://os.mbed.com/docs/mbed-os/latest/tools/index.html). However, this file specifically refers to the command-line interface tools, [Arm Mbed CLI 1](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli) and [Mbed CLI 2](https://github.com/ARMmbed/mbed-tools#installation).
+This project is built using the Mbed CE CMake-based build system, and can be developed on the command line or by using VS Code or CLion.
 
 The [BLE documentation](https://os.mbed.com/docs/latest/reference/bluetooth.html) describes the BLE APIs on Mbed OS.
 
-## Mbed OS build tools
-
-### Mbed CLI 2
-Starting with version 6.5, Mbed OS uses Mbed CLI 2. It uses Ninja as a build system, and CMake to generate the build environment and manage the build process in a compiler-independent manner. If you are working with Mbed OS version prior to 6.5 then check the section [Mbed CLI 1](#mbed-cli-1).
-
-[Install Mbed CLI 2](https://os.mbed.com/docs/mbed-os/latest/build-tools/install-or-upgrade.html).
-
-### Mbed CLI 1
-[Install Mbed CLI 1](https://os.mbed.com/docs/mbed-os/latest/quick-start/offline-with-mbed-cli.html).
-
 ## Pre-Requisites
-
 
 In order to use BLE in Mbed OS you need one of the following hardware combinations:
 
@@ -26,7 +14,7 @@ In order to use BLE in Mbed OS you need one of the following hardware combinatio
 * A [DISCO_L475VG_IOT01A (ref B-L475E-IOT01A)](https://os.mbed.com/platforms/ST-Discovery-L475E-IOT01A/) board.
 * A [DISCO_L562QE (ref STM32L562E-DK)](https://os.mbed.com/platforms/ST-Discovery-L562QE/) board.
 * A [NUCLEO_WB55RG](https://os.mbed.com/platforms/ST-Nucleo-WB55RG/) board.
-* A Nordic nRF52-based board such as [nRF52DK](https://os.mbed.com/platforms/Nordic-nRF52-DK/).
+* A Nordic nRF52-based board such as [nRF52DK](https://os.mbed.com/platforms/Nordic-nRF52-DK/) or [ARDUINO_NANO33BLE](https://github.com/mbed-ce/mbed-os/wiki/MCU-Info-Page:-Arduino-Nano-33-BLE).
 * An Embedded Planet [Agora](https://os.mbed.com/platforms/agora-dev/) board.
 
 The [BLE documentation](https://os.mbed.com/docs/latest/reference/bluetooth.html) describes the BLE APIs on mbed OS.
@@ -51,6 +39,7 @@ The following targets have been tested and work with these examples:
 * Nordic:
     * NRF52_DK
     * NRF52840_DK
+    * ARDUINO_NANO33BLE (by extension, since it uses the same MCU as the above board)
 
 * Embedded Planet:
     * EP_AGORA
@@ -93,62 +82,14 @@ Below is an example of the JSON to be added in the `target_overrides` section of
 
 ## Building the examples
 
-1. Clone the repository containing the collection of examples:
-
-    ```bash
-    $ git clone https://github.com/ARMmbed/mbed-os-example-ble.git
-    ```
-
-
-    **Tip:** If you don't have git installed, you can [download a zip file](https://github.com/ARMmbed/mbed-os-example-ble/archive/master.zip) of the repository.
-
-1. Using a command-line tool, navigate to any of the example directories, like BLE_Advertising:
-
-    ```bash
-    $ cd mbed-os-example-ble
-    $ cd BLE_Advertising
-    ```
-
-1. Update the source tree:
-
-    * Mbed CLI 2
-
-    ```bash
-    $ mbed-tools deploy
-    ```
-    
-    * Mbed CLI 1
-
-    ```bash
-    $ mbed deploy
-    ```
-
-1. Connect a USB cable between the USB port on the board and the host computer.
-
-1. Run the following command: this will build the example project, program the microcontroller flash memory, and then
-open a serial terminal to the device.
-
-    * Mbed CLI 2
-
-    ```bash
-    $ mbed-tools compile -m <TARGET> -t <TOOLCHAIN> --flash --sterm --baudrate 115200
-    ```
-
-    * Mbed CLI 1
-
-    ```bash
-    $ mbed compile -m <TARGET> -t <TOOLCHAIN> --flash --sterm --baudrate 115200
-    ```
-
-Your PC may take a few minutes to compile your code.
-
-The binary will be located in the following directory:
-* **Mbed CLI 2** - `./cmake_build/<TARGET>/<PROFILE>/<TOOLCHAIN>/`
-* **Mbed CLI 1** - `./BUILD/<TARGET>/<TOOLCHAIN>/`
-
-You can manually copy the binary to the target, which gets mounted on the host computer through USB, rather than using the `--flash` option.
-
-You can also open a serial terminal separately, as explained below, rather than using the `--sterm` and `--baudrate` options.
+1. Clone this repo to your machine.  Don't forget to use `--recursive` to clone the submodules: `git clone --recursive https://github.com/mbed-ce/mbed-os-example-ble.git`
+2. Set up the GNU ARM toolchain (and other programs) on your machine using [the toolchain setup guide](https://github.com/mbed-ce/mbed-os/wiki/Toolchain-Setup-Guide).
+3. Set up the CMake project for editing.  We have three ways to do this:
+    - On the [command line](https://github.com/mbed-ce/mbed-os/wiki/Project-Setup:-Command-Line)
+    - Using the [CLion IDE](https://github.com/mbed-ce/mbed-os/wiki/Project-Setup:-CLion)
+    - Using the [VS Code IDE](https://github.com/mbed-ce/mbed-os/wiki/Project-Setup:-VS-Code)
+4. Connect a USB cable between the USB port on the board and the host computer.
+5. Build and flash one of the examples using its flash target.  e.g. to flash the BLE_Advertising example, you would build `flash-BLE_Advertising` with ninja or with your IDE.
 
 ## Running the examples
 
@@ -193,6 +134,8 @@ Here is an example with NUCLEO_WB55RG, update your local mbed_app.json:
 {
     "requires": ["bare-metal", "events", "cordio-stm32wb"],
 ```
+
+You will also need to change the CMakeLists to link to the `mbed-baremetal` library instead of `mbed-os`.
 
 ## How to reduce application size
 
@@ -243,4 +186,4 @@ The software is provided under Apache-2.0 license. Contributions to this project
 
 ## Branches
 
-`Master` branch is for releases only. Please target the `development` branch for all your PRs.
+`master` branch is for releases only. Please target the `development` branch for all your PRs.
