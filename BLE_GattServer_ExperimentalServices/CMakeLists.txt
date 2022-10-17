@@ -1,42 +1,24 @@
 # Copyright (c) 2020 ARM Limited. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
-cmake_minimum_required(VERSION 3.19.0 FATAL_ERROR)
-
-set(MBED_PATH ${CMAKE_CURRENT_SOURCE_DIR}/mbed-os CACHE INTERNAL "")
-set(MBED_CONFIG_PATH ${CMAKE_CURRENT_BINARY_DIR} CACHE INTERNAL "")
-set(APP_TARGET BLE_GattServer_ExperimentalServices)
-
-include(${MBED_PATH}/tools/cmake/app.cmake)
-
-project(${APP_TARGET})
-
-add_subdirectory(${MBED_PATH})
-
-add_subdirectory(mbed-os-ble-utils)
 add_subdirectory(mbed-os-experimental-ble-services/services/CurrentTime)
 add_subdirectory(mbed-os-experimental-ble-services/services/LinkLoss)
 
-add_executable(${APP_TARGET})
+add_executable(BLE_GattServer_ExperimentalServices source/main.cpp)
 
-target_sources(${APP_TARGET}
-    PRIVATE
-        source/main.cpp
-)
+target_link_libraries(BLE_GattServer_ExperimentalServices
+	mbed-os
+	mbed-ble-utils
+	mbed-ble)
 
-target_link_libraries(${APP_TARGET}
-    PRIVATE
-        mbed-os
-        mbed-events
-        mbed-ble
-        mbed-ble-utils
-        ble-service-link-loss
-        ble-service-current-time
-)
+# The build system in mbed-os-experimental-ble-services has not been upgraded to Mbed CE yet,
+# so we can't use its CMake files directly (they reference targets like mbed-core that no longer exist).
+# Instead, for now, we just compile the files from the submodule as part of this target.
+target_sources(BLE_GattServer_ExperimentalServices PRIVATE
+	mbed-os-experimental-ble-services/services/CurrentTime/source/CurrentTimeService.cpp
+	mbed-os-experimental-ble-services/services/LinkLoss/source/LinkLossService.cpp)
+target_include_directories(BLE_GattServer_ExperimentalServices PRIVATE
+	mbed-os-experimental-ble-services/services/CurrentTime/include
+	mbed-os-experimental-ble-services/services/LinkLoss/include)
 
-mbed_set_post_build(${APP_TARGET})
-
-option(VERBOSE_BUILD "Have a verbose build process")
-if(VERBOSE_BUILD)
-    set(CMAKE_VERBOSE_MAKEFILE ON)
-endif()
+mbed_set_post_build(BLE_GattServer_ExperimentalServices)

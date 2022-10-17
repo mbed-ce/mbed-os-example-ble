@@ -16,7 +16,7 @@
  */
 
 #include "ble/BLE.h"
-#include "ble/gap/Gap.h"
+#include "ble/Gap.h"
 #include "pretty_printer.h"
 #include "ble-service-link-loss/LinkLossService.h"
 #include "ble-service-current-time/CurrentTimeService.h"

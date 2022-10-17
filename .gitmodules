@@ -1,0 +1,10 @@
+[submodule "mbed-os"]
+	path = mbed-os
+	url = https://github.com/mbed-ce/mbed-os.git
+	shallow = true
+[submodule "mbed-os-ble-utils"]
+	path = mbed-os-ble-utils
+	url = https://github.com/ARMmbed/mbed-os-ble-utils.git
+[submodule "BLE_GattServer_ExperimentalServices/mbed-os-experimental-ble-services"]
+	path = BLE_GattServer_ExperimentalServices/mbed-os-experimental-ble-services
+	url = https://github.com/ARMmbed/mbed-os-experimental-ble-services.git

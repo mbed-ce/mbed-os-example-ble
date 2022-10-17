@@ -38,8 +38,7 @@ The following targets have been tested and work with these examples:
 
 * Nordic:
     * NRF52_DK
-    * NRF52840_DK
-    * ARDUINO_NANO33BLE (by extension, since it uses the same MCU as the above board)
+    * NRF52840_DK (and by extension, ARDUINO_NANO33BLE)
 
 * Embedded Planet:
     * EP_AGORA
