@@ -59,8 +59,7 @@ To make the board compatible with the ST BLE expansion three things are required
 
 All these operations can be done in the file `mbed_app.json` present in every example.
 
-In the section `target_overrides`, add a new object named after your target with the following three fields:
-* `"target.components_add": ["BlueNRG_2"]` Add the BlueNRG-2 component to the target.
+In the section `target_overrides`, add a new object named after your target with the following two lines:
 * `"target.features_add": ["BLE"]` Add the BLE feature to the target.
 * `"target.extra_labels_add": ["CORDIO"]`: Add the BLE implementation of the ST BLE expansion to the list of the application modules.
 
