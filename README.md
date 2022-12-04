@@ -23,7 +23,7 @@ The [BLE documentation](https://os.mbed.com/docs/latest/reference/bluetooth.html
 
 The following targets have been tested and work with these examples:
 
-* Targets with an ST BLE expansion board plugged in:
+* Targets with an ST BlueNRG 2 expansion board plugged in:
     * NUCLEO_F401RE
     * NUCLEO_L476RG
     * NUCLEO_F446RE
