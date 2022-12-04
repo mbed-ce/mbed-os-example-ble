@@ -17,11 +17,13 @@ set(EXTRA_BLE_COMPONENT_TARGETS "")
 if("BlueNRG_2" IN_LIST MBED_TARGET_LABELS)
 
 	list(APPEND EXTRA_BLE_COMPONENT_TARGETS
+		mbed-ble-cordio # note: this must appear first on the link line so that the linker can correctly resolve references
 		mbed-bluenrg-2)
 
 elseif("BlueNRG_MS" IN_LIST MBED_TARGET_LABELS)
 
 	list(APPEND EXTRA_BLE_COMPONENT_TARGETS
+		mbed-ble-cordio # note: this must appear first on the link line so that the linker can correctly resolve references
 		mbed-bluenrg-ms)
 
 endif()
