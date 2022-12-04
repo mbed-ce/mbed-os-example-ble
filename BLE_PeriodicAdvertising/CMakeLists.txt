@@ -2,5 +2,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 add_executable(BLE_PeriodicAdvertising source/main.cpp)
-target_link_libraries(BLE_PeriodicAdvertising mbed-os mbed-ble-utils mbed-ble)
+target_link_libraries(BLE_PeriodicAdvertising mbed-os mbed-ble-utils mbed-ble ${EXTRA_BLE_COMPONENT_TARGETS})
 mbed_set_post_build(BLE_PeriodicAdvertising)

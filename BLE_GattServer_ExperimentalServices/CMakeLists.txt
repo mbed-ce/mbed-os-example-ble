@@ -9,7 +9,8 @@ add_executable(BLE_GattServer_ExperimentalServices source/main.cpp)
 target_link_libraries(BLE_GattServer_ExperimentalServices
 	mbed-os
 	mbed-ble-utils
-	mbed-ble)
+	mbed-ble
+	${EXTRA_BLE_COMPONENT_TARGETS})
 
 # The build system in mbed-os-experimental-ble-services has not been upgraded to Mbed CE yet,
 # so we can't use its CMake files directly (they reference targets like mbed-core that no longer exist).

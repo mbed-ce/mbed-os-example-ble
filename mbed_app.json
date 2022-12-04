@@ -9,12 +9,22 @@
             "ble.trace-human-readable-enums": false
         },
         "K64F": {
-            "target.components_add": ["BlueNRG_MS"],
+            "target.components_add": ["BlueNRG_2"],
             "target.features_add": ["BLE"],
             "target.extra_labels_add": ["CORDIO"]
         },
         "NUCLEO_F401RE": {
-            "target.components_add": ["BlueNRG_MS"],
+            "target.components_add": ["BlueNRG_2"],
+            "target.features_add": ["BLE"],
+            "target.extra_labels_add": ["CORDIO"]
+        },
+        "NUCLEO_F446RE": {
+            "target.components_add": ["BlueNRG_2"],
+            "target.features_add": ["BLE"],
+            "target.extra_labels_add": ["CORDIO"]
+        },
+        "NUCLEO_L476RG": {
+            "target.components_add": ["BlueNRG_2"],
             "target.features_add": ["BLE"],
             "target.extra_labels_add": ["CORDIO"]
         },
