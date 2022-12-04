@@ -26,7 +26,7 @@ The following targets have been tested and work with these examples:
 * Targets with an ST BLE expansion board plugged in:
     * NUCLEO_F401RE
     * NUCLEO_L476RG
-    * NUCLEO_L446RE
+    * NUCLEO_F446RE
     * K64F
 
 * ST boards with embedded SPBTLE-RF module (BlueNRG-MS):

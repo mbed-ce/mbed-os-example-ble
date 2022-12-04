@@ -15,7 +15,7 @@ jobs:
         mbed_target: 
           - NUCLEO_F401RE
           - NUCLEO_L476RG
-          - NUCLEO_L446RE
+          - NUCLEO_F446RE
           - K64F
           - DISCO_L475VG_IOT01A
           - DISCO_L562QE
