@@ -23,6 +23,7 @@ jobs:
           - NRF52_DK
           - ARDUINO_NANO33BLE
           - EP_AGORA
+          - SFE_ARTEMIS
     
     steps:
       - name: Checkout

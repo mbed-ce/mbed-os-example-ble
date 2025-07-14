@@ -33,15 +33,10 @@ The following targets have been tested and work with these examples:
     * DISCO_L475VG_IOT01A (ref B-L475E-IOT01A)
     * DISCO_L562QE (ref STM32L562E-DK)
 
-* Board with wireless STM32WB microcontrollers:
+* Board with MCUs that natively support bluetooth:
     * NUCLEO_WB55RG
-
-* Nordic:
-    * NRF52_DK
-    * NRF52840_DK (and by extension, ARDUINO_NANO33BLE)
-
-* Embedded Planet:
-    * EP_AGORA
+    * nRF52 boards, including `NRF52_DK`, `NRF52_DK`, `EP_AGORA`, and `ARDUINO_NANO33BLE`
+    * Ambiq Apollo3 boards, including `SFE_ARTEMIS`, `SFE_ARTEMIS_NANO`, etc
 
 **Important:** If an ST BLE expansion is used with the K64F board, a hardware patch is required. Check out [X-NUCLEO-BNRG2A1](https://github.com/ARMmbed/mbed-os/tree/master/connectivity/drivers/ble/FEATURE_BLE/COMPONENT_BlueNRG_2) or [X-NUCLEO-IDB05A1](https://os.mbed.com/components/X-NUCLEO-IDB05A1/) for more information.
 

@@ -5,10 +5,11 @@ cmake_policy(VERSION 3.19)
 # Note: This block must be before the include of app.cmake
 set(MBED_APP_JSON_PATH mbed_app.json)
 
-include(mbed-os/tools/cmake/app.cmake)
-add_subdirectory(mbed-os)
-
+include(mbed-os/tools/cmake/mbed_toolchain_setup.cmake)
 project(mbed-os-example-ble)
+include(mbed_project_setup)
+
+add_subdirectory(mbed-os)
 
 add_subdirectory(mbed-os-ble-utils) # for the mbed-ble-utils dependency used by each example
 
@@ -38,5 +39,3 @@ add_subdirectory(BLE_GattServer_ExperimentalServices)
 add_subdirectory(BLE_PeriodicAdvertising)
 add_subdirectory(BLE_SecurityAndPrivacy)
 add_subdirectory(BLE_SupportedFeatures)
-
-mbed_finalize_build()
